@@ -1,0 +1,25 @@
+img {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 8px;
+    border-radius: 8px;
+    background-image: radial-gradient(#a6a6a6, #e6e6e6);
+    padding: 5px;
+    /*transition: transform 0.5s ease-in-out;*/
+  }
+  
+  .g_container {
+    display: grid;
+    grid-template-columns: repeat(7, 14%);
+    grid-template-rows: auto;
+    margin-left: 5%;
+    justify-self: center;
+    row-gap: 5%;
+  }
+  
+  img:hover {
+    cursor: pointer;
+  }
+  
+  img:active  {
+    opacity: 0.7;
+    transform: scale(1.3);
+  }
