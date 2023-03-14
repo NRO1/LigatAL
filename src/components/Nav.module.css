@@ -1,9 +1,5 @@
-.img {
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 8px;
-    border-radius: 10px;
-    background-image: radial-gradient(#a6a6a6, #e6e6e6);
+img {
     padding: 5px;
-    /*transition: transform 0.5s ease-in-out;*/
   }
   
   .g_container {
@@ -17,8 +13,18 @@
   
   img:hover {
     cursor: pointer;
+    scale: 1.2;
   }
 
-  .act {
-    background-color: red;
+  img:active {
+    opacity: 0.8;
   }
+
+  .teamName {
+    display: flex;
+    justify-content: center;
+    font-size: 2rem;
+    margin-top: 3%;
+    font-weight: 500;
+  }
+

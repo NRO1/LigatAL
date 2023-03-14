@@ -1,5 +1,7 @@
 import axios from 'axios';
 import classes from './Results.module.css';
+import Streak from './Streak';
+import streak from './Streak';
 
 function Results(props) {
     let teamId = props.tid
@@ -14,27 +16,42 @@ function Results(props) {
         }
       };
 
-      let stats = {}
+      let streak = {};
+      let played = {};
+      let goals = {};
+      let cards = {};
+      let lineups = {};
+
+      let streak_arr = []
+
       async function getData() {
         await axios.request(options).then(function (response) {
-            stats = response.data.response;
-            console.log(stats)
-        }).catch(function (error) {
+            streak = {...response.data.response.form};
+            for (const x in streak) {   
+               streak_arr.push(`${streak[x]}`)
+            }
+
+            console.log(streak_arr)
+            /*played = {...response.data.response.fixtures};
+            goals = {...response.data.response.goals};
+            cards = {...response.data.response.cards};
+            lineups = {...response.data.response.lineups};*/
+
+         }).catch(function (error) {
             console.error(error);
         });
       }
       
      
     return (
-
         <div>
           <div>
-              <button onClick={getData} className={classes.btn}>קבל תוצאות</button>
+              <button onClick={getData} className={classes.btn}>בחר קבוצה ולחץ כאן</button>
           </div>
-            
+          <div>
+            <Streak streak={streak_arr} />
+          </div>
         </div>
-        
-        
     )
 }
 
