@@ -1,9 +1,9 @@
 import axios from 'axios';
 import classes from './Results.module.css';
 import Streak from './Streak';
-import streak from './Streak';
 
 function Results(props) {
+
     let teamId = props.tid
     
     const options = {
@@ -30,8 +30,7 @@ function Results(props) {
             for (const x in streak) {   
                streak_arr.push(`${streak[x]}`)
             }
-
-            console.log(streak_arr)
+    
             /*played = {...response.data.response.fixtures};
             goals = {...response.data.response.goals};
             cards = {...response.data.response.cards};
@@ -49,7 +48,7 @@ function Results(props) {
               <button onClick={getData} className={classes.btn}>בחר קבוצה ולחץ כאן</button>
           </div>
           <div>
-            <Streak streak={streak_arr} />
+            <Streak data={streak_arr} />
           </div>
         </div>
     )
