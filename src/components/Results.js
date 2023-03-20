@@ -1,6 +1,12 @@
 import axios from "axios";
 import classes from "./Results.module.css";
 import { useState } from "react";
+import Spinner from "../Util/spinner";
+import Streak from "./elements/Streak";
+import Played from "./elements/Played";
+import Cards from "./elements/Cards";
+import Lineups from "./elements/Lineups";
+import Goals from "./elements/Goals";
 
 function Results(props) {
   const [streakArray, setStreakArray] = useState([]);
@@ -8,6 +14,8 @@ function Results(props) {
   const [goalsArry, setGoalsArray] = useState([]);
   const [cardsArray, setCardsArray] = useState([]);
   const [lineupsArray, setLineupsArray] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [doneLoading, setDoneLoading] = useState(false);
 
   let teamId = props.tid;
 
@@ -28,6 +36,7 @@ function Results(props) {
   let lineups_arr = [];
 
   async function getData() {
+    setIsLoading(true);
     await axios
       .request(options)
       .then(function (response) {
@@ -35,30 +44,28 @@ function Results(props) {
         streak_arr = Object.values(streak);
         setStreakArray(streak_arr);
 
-        let played = {...response.data.response.fixtures};
+        let played = { ...response.data.response.fixtures };
         played_arr = Object.values(played);
-        setPlayedArray(played_arr)
+        setPlayedArray(played_arr);
 
-        let goals = {...response.data.response.goals};
+        let goals = { ...response.data.response.goals };
         goals_arr = Object.values(goals);
-        setGoalsArray(goals_arr)
+        setGoalsArray(goals_arr);
 
-        let cards = {...response.data.response.cards};
+        let cards = { ...response.data.response.cards };
         cards_arr = Object.values(cards);
         setCardsArray(cards_arr);
-        
-        let lineups = {...response.data.response.lineups};
+
+        let lineups = { ...response.data.response.lineups };
         lineups_arr = Object.values(lineups);
-        setLineupsArray(lineups_arr)
-           
-        console.log(streakArray)
-        console.log(playedArray)
-        console.log(cardsArray)
-        console.log(goalsArry)
-        console.log(lineupsArray) 
+        setLineupsArray(lineups_arr);
+
+        setIsLoading(false);
+        setDoneLoading(true);
       })
       .catch(function (error) {
-        console.error(error);
+        setIsLoading(false);
+        alert("תקלה בשרת, אנא נסה מאוחר יותר שוב");
       });
   }
 
@@ -69,23 +76,16 @@ function Results(props) {
           בחר קבוצה ולחץ כאן
         </button>
       </div>
-      <div>
-        <p className={classes.header}>תוצאה מתחילת העונה</p>
+      {isLoading && <Spinner />}
+      {doneLoading && (
         <div>
-          {streakArray.map((res, idx) => (
-            <p key={idx} className={classes.streak_w}>
-             {`${idx + 1} - ${res}`}
-            </p>
-          ))}
+          <Streak data={streakArray} />
+          <Played data={playedArray} />
+          <Lineups data={lineupsArray} />
+          <Goals data={goalsArry} />
+          <Cards data={cardsArray} />
         </div>
-        <div>
-          {playedArray.map((res, idx) => (
-            <p key={idx} className={classes.streak_w}>
-             {`${idx + 1} - ${res}`}
-            </p>
-          ))}
-        </div>
-      </div>
+      )}
     </div>
   );
 }
