@@ -9,7 +9,7 @@ function Streak(props) {
           <p
             key={idx}
             className={classes.data}
-            style={{ backgroundColor: res === "W" ? "#29A632" : "#BF0B3B" }}
+            style={{ color: res === "W" ? "#29A632" : "#BF0B3B" }}
           >
             {`${idx + 1} - ${res}`}
           </p>

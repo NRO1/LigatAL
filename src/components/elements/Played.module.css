@@ -6,9 +6,3 @@
     border-bottom: 2px solid var(--orange);
     color: var(--orange);
 }
-
-.conatiner {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
