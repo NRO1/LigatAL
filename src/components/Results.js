@@ -33,10 +33,19 @@ function Results(props) {
   let played_arr = [];
   let goals_arr = [];
   let cards_arr = [];
-  let lineups_arr = [];
+  let lineup_data = [];
+
 
   async function getData() {
     setIsLoading(true);
+
+    if (teamId === 0) {
+      alert("קבוצה לא נבחרה")
+      setDoneLoading(false);
+      setIsLoading(false);
+      return
+    }
+    
     await axios
       .request(options)
       .then(function (response) {
@@ -57,8 +66,14 @@ function Results(props) {
         setCardsArray(cards_arr);
 
         let lineups = { ...response.data.response.lineups };
-        lineups_arr = Object.values(lineups);
-        setLineupsArray(lineups_arr);
+        for (const v of Object.values(lineups)) {
+          let formation_obj = {
+            name: v.formation,
+            NOT: v.played,
+          };
+          lineup_data.push(formation_obj)
+        }
+        setLineupsArray(lineup_data);
 
         setIsLoading(false);
         setDoneLoading(true);
@@ -81,8 +96,8 @@ function Results(props) {
         <div>
           <Streak data={streakArray} />
           <Played data={playedArray} />
-          <Lineups data={lineupsArray} />
           <Goals data={goalsArry} />
+          <Lineups data={lineupsArray} />
           <Cards data={cardsArray} />
         </div>
       )}
