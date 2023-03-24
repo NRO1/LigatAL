@@ -26,7 +26,7 @@ function Played(props) {
         <div>
             <div className={classes.graph_container}> 
               <p className={classes.inner_header_up}> הפסדים מתחילת העונה</p>
-              <PieChart width={200} height={160}>
+              <PieChart width={200} height={180}>
               <Pie
                   dataKey="value"
                   startAngle={180}
@@ -45,7 +45,7 @@ function Played(props) {
           <div>
             <div className={classes.graph_container}> 
               <p className={classes.inner_header_up}> נצחונות מתחילת העונה</p>
-              <PieChart width={200} height={160}>
+              <PieChart width={200} height={180}>
               <Pie
                   dataKey="value"
                   startAngle={180}
@@ -64,7 +64,7 @@ function Played(props) {
           <div>
             <div className={classes.graph_container}> 
               <p className={classes.inner_header_up}>תיקו מתחילת העונה</p>
-              <PieChart width={200} height={160}>
+              <PieChart width={200} height={180}>
               <Pie
                   dataKey="value"
                   startAngle={180}
