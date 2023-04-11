@@ -1,10 +1,16 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'BUILT_IMAGE_NAME')
+    }
+
     stages {
         stage('Build image') {
             steps {
-                echo "2nd file..."
+                sh """
+                echo ${params.BUILT_IMAGE_NAME}
+                """
             }
         }
     }
