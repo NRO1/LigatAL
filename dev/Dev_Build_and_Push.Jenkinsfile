@@ -8,7 +8,7 @@ pipeline {
                     sh '''
                         echo "#####   BUILDING IMAGE   ###"
                         docker build --tag nro1-la:v1 --build-arg RAK=rak --build-arg RAH=rah .
-                        echo "#####   DONE   ###"
+                        echo "#####   DONE   ######"
                         '''
                 }
             }
@@ -16,12 +16,13 @@ pipeline {
 
         stage('Push to Repo') {
             steps {
-                    sh '''
-                        echo "#####   PUSHING TO ECR   ###"
-                        docker tag nro1-la:v1 public.ecr.aws/n5h8m9x0/nro1-la:v1
-                        docker push public.ecr.aws/n5h8m9x0/nro1-la:v1
-                        echo "#####   DONE   ###"
-                        '''
+                    script{
+                        sh "echo '#####   PUSHING TO ECR   ###'"
+                        sh "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/n5h8m9x0"
+                        sh "docker tag nro1-la:v1 public.ecr.aws/n5h8m9x0/nro1-la:v1"
+                        sh "docker push public.ecr.aws/n5h8m9x0/nro1-la:v1"
+                        sh "echo '#####   DONE   #####'"
+                    }
                 }
             }
 
