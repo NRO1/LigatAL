@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('Build image') {
+        stage('Dev_Deploy') {
             steps {
                 sh """
                 echo ${params.BUILT_IMAGE_NAME}
