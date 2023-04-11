@@ -29,8 +29,8 @@ pipeline {
 
         stage('Trigger Push') {
             steps {
-                build job: 'Dev_Push_Image', wait: false, parameters: [
-                    string(name: 'BUILT_IMAGE_NAME', value: "public.ecr.aws/n5h8m9x0/nro1-la:v1")
+                build job: 'Dev_Deploy', wait: false, parameters: [
+                    string(name: 'BUILT_IMAGE_NAME', value: "nrdevac1/la:v1")
                 ]
             }
         }
