@@ -18,7 +18,6 @@ pipeline {
             steps {
                     sh '''
                         echo "#####   PUSHING TO ECR   ###"
-                        aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/n5h8m9x0
                         docker tag nro1-la:v1 public.ecr.aws/n5h8m9x0/nro1-la:v1
                         docker push public.ecr.aws/n5h8m9x0/nro1-la:v1
                         echo "#####   DONE   ###"
