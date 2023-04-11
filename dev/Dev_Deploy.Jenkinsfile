@@ -2,10 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Build image') {
             steps {
-                sh 'dev_build and push...'
+                echo "2nd file..."
             }
         }
     }
-}
+}    
+
