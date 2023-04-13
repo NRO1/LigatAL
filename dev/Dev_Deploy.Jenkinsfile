@@ -9,6 +9,7 @@ pipeline {
         stage('Dev_Deploy') {
             steps {
                 sh """
+                echo "test"
                 echo ${params.BUILT_IMAGE_NAME}
                 """
             }
