@@ -16,10 +16,11 @@ pipeline {
                     file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')
                 ]) {
                     sh '''
-                    kubectl apply --kubeconfig ${KUBECONFIG} -f k8s/Dev_Deploy.yaml
+                    kubectl apply --kubeconfig ${KUBECONFIG} -f k8s/Dev_Deploy.yaml --namespace=dev
                     '''
                 }
             }
         }
-}    
+    } 
+}   
 
