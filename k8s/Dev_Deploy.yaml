@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: LigatAl
+  labels:
+    app: LigatAl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: LigatAl
+  template:
+    metadata:
+      labels:
+        app: LigatAl
+    spec:
+      containers:
+      - name: LigatAl
+        image: nrdevac1/la:v1
+        ports:
+        - containerPort: 80
+        resources:
+          limits: 
+            memory: "1000Mi"
+            cpu: "500m"
