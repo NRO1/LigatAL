@@ -25,35 +25,3 @@ spec:
             memory: "1000Mi"
             cpu: "500m"
 
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: la-service
-  namespace: dev
-spec:
-  selector:
-    app: ligat-al
-  ports:
-    - protocol: TCP
-      port: 5000
-      targetPort: 80
----
-
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: la-ingress
-  namespace: dev
-spec:
-  rules:
-  - host: ec2-35-159-46-241.eu-central-1.compute.amazonaws.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: la-service
-            port:
-              number: 5000
