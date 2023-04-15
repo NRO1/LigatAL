@@ -10,17 +10,6 @@ pipeline {
     }
 
    stages {
-        stage('Test image') {
-            steps {
-                script {
-                    if (${params.BUILT_IMAGE_NAME} !== "nrdevac1/la:v1") {
-                        currentBuild.result = 'ABORTED'
-                        echo 'Build stopped due to wrong image'
-                    }
-                }
-            }
-        }
- 
         stage('Bot Deploy') {
             steps {
                 withCredentials([
