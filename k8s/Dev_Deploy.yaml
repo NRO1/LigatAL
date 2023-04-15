@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: LigatAl
+  name: ligat-al
   labels:
-    app: LigatAl
+    app: ligat-al
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: LigatAl
+      app: ligat-al
   template:
     metadata:
       labels:
-        app: LigatAl
+        app: ligat-al
     spec:
       containers:
-      - name: LigatAl
+      - name: ligat-al
         image: nrdevac1/la:v1
         ports:
         - containerPort: 80
