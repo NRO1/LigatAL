@@ -10,6 +10,17 @@ pipeline {
     }
 
    stages {
+        node {
+            stage('Test image') {
+                steps {
+                    if (${params.BUILT_IMAGE_NAME} !== "nrdevac1/la:v1") {
+                        currentBuild.result = 'ABORTED'
+                        echo 'Build stopped due to wrong image'
+                    }
+                }
+            }
+        }  
+
         stage('Bot Deploy') {
             steps {
                 withCredentials([
@@ -22,5 +33,15 @@ pipeline {
             }
         }
     } 
+
+    post {
+        failure {
+            echo "Deploy stage failed due to issue in the build or pushing to image repo"
+        }
+
+        success {
+            echo "Build and Deploy are successful!"
+        }
+    }
 }   
 
