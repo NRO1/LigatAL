@@ -12,9 +12,11 @@ pipeline {
    stages {
         stage('Test image') {
             steps {
-                if (${params.BUILT_IMAGE_NAME} !== "nrdevac1/la:v1") {
-                    currentBuild.result = 'ABORTED'
-                    echo 'Build stopped due to wrong image'
+                script {
+                    if (${params.BUILT_IMAGE_NAME} !== "nrdevac1/la:v1") {
+                        currentBuild.result = 'ABORTED'
+                        echo 'Build stopped due to wrong image'
+                    }
                 }
             }
         }
