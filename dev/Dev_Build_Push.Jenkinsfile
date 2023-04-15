@@ -27,7 +27,7 @@ pipeline {
             }
         }
 
-        stage('Trigger Push') {
+        stage('Trigger Deploy') {
             steps {
                 build job: 'Dev_Deploy', wait: false, parameters: [
                     string(name: 'BUILT_IMAGE_NAME', value: "nrdevac1/la:v1")
