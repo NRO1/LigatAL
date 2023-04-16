@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ligat-al
-  namespace: dev
+  namespace: prod
   labels:
     app: ligat-al
 spec:

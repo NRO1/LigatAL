@@ -26,25 +26,29 @@ pipeline {
                 }
             }
         }
-
-        stage('Trigger Deploy') {
-            steps {
-                build job: 'Prod_Deploy', wait: false, parameters: [
-                    string(name: 'BUILT_IMAGE_NAME', value: "nrdevac1/la-prod:v1")
-                ]
+    
+        stage('Bot Deploy') {
+                steps {
+                    withCredentials([
+                        file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')
+                    ]) {
+                        sh '''
+                        kubectl apply --kubeconfig ${KUBECONFIG} -f k8s/Prod_Deploy.yaml --namespace=prod
+                        '''
+                    }
+                }
             }
         }
-    }
 
-     post {
-        failure {
-            echo "Build stage failed due to issue in the build or pushing to image repo"
-        }
+        post {
+            failure {
+                echo "Deploy stage failed due to issue in the build or pushing to image repo"
+            }
 
-        success {
-            echo "Build satge is successful, continuing to deploy stage"
+            success {
+                echo "Build and Deploy are successful!"
+            }
         }
-    }
 }
 
         
