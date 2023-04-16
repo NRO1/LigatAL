@@ -29,10 +29,20 @@ pipeline {
 
         stage('Trigger Deploy') {
             steps {
-                build job: 'Dev_Deploy', wait: false, parameters: [
+                build job: 'Prod_Deploy', wait: false, parameters: [
                     string(name: 'BUILT_IMAGE_NAME', value: "nrdevac1/la-prod:v1")
                 ]
             }
+        }
+    }
+
+     post {
+        failure {
+            echo "Build stage failed due to issue in the build or pushing to image repo"
+        }
+
+        success {
+            echo "Build satge is successful, continuing to deploy stage"
         }
     }
 }

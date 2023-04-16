@@ -10,6 +10,7 @@ pipeline {
     }
 
    stages {
+        
         stage('Bot Deploy') {
             steps {
                 withCredentials([

@@ -17,11 +17,21 @@ pipeline {
                     file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')
                 ]) {
                     sh '''
-                    kubectl apply --kubeconfig ${KUBECONFIG} -f k8s/Dev_Deploy.yaml --namespace=dev
+                    kubectl apply --kubeconfig ${KUBECONFIG} -f k8s/Prod_Deploy.yaml --namespace=prod
                     '''
                 }
             }
         }
-    } 
+    }
+
+     post {
+        failure {
+            echo "Deploy stage failed due to issue in the build or pushing to image repo"
+        }
+
+        success {
+            echo "Build and Deploy are successful!"
+        }
+    }
 }   
 
