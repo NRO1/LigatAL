@@ -18,9 +18,6 @@ function Results(props) {
   const [doneLoading, setDoneLoading] = useState(false);
 
   let teamId = props.tid;
-  console.log(teamId)
-  console.log(process.env.REACT_APP_KEY)
-  console.log(process.env.REACT_APP_HOST)
 
   const options = {
     method: "GET",
