@@ -12,6 +12,17 @@ pipeline {
                 }
             }
         }
+
+        stage('Build image') {
+            steps {
+                script {
+                    withCredentials([string(credentialsId: 'RAK', variable: 'rak'), string(credentialsId: 'RAH', variable: 'rah')]) {
+                      print 'rak=' + rak
+                    print 'rak.collect { it }=' + rak.collect { it }
+                }
+            }
+            }
+        }
         
         stage('Push to Repo') {
             steps {
