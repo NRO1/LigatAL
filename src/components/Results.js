@@ -40,7 +40,6 @@ function Results(props) {
     setIsLoading(true);
 
     if (teamId === 0) {
-      console.log(process.env.REACT_APP_KEY, process.env.REACT_APP_HOST)
       alert("קבוצה לא נבחרה")
       setDoneLoading(false);
       setIsLoading(false);

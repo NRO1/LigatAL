@@ -7,6 +7,8 @@ pipeline {
                     sh '''
                     echo "#####   BUILDING IMAGE   ###"
                     docker build --tag nrdevac1/la:v1 --build-arg RAK=rak --build-arg RAH=rah .
+                    print 'RAH=' + RAH
+                    print 'RAH.collect { it }=' + RAH.collect { it }
                     echo "#####   DONE   ######"
                     '''
                 }
