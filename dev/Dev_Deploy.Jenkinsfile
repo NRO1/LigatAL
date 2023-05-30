@@ -13,7 +13,7 @@ pipeline {
             }
         }
 
-        stage('Build image') {
+        stage('check ') {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'RAK', variable: 'rak'), string(credentialsId: 'RAH', variable: 'rah')]) {
