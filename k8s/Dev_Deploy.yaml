@@ -47,7 +47,6 @@ spec:
   - http:
       paths:
       - path: /dev
-        pathType: Exact
         backend:
           service:
             name: ligat-al-dev-svc
