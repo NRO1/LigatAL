@@ -26,6 +26,7 @@ function Results(props) {
     headers: {
       "X-RapidAPI-Key": process.env.REACT_APP_KEY,
       "X-RapidAPI-Host": process.env.REACT_APP_HOST,
+      "Content-Type": "application/json"
     },
   };
 

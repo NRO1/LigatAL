@@ -28,7 +28,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ligat-al-svc
+  name: ligat-al-dev-svc
 spec:
   selector:
     app: ligat-al
@@ -45,11 +45,11 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
+      - path: /dev
         pathType: Prefix
         backend:
           service:
-            name: ligat-al-svc
+            name: ligat-al-dev-svc
             port:
               number: 80
 
