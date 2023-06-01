@@ -47,6 +47,7 @@ spec:
     http:  
       paths:  
       - backend:  
+          pathType: Exact
           serviceName: ligat-al-dev-svc  
           servicePort: 80  
 
