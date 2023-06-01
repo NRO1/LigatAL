@@ -38,18 +38,15 @@ spec:
     name: ligat-al
 ---
 apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: ligat-al-dev-ingress
-  namespace: dev
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /dev
-        backend:
-          service:
-            name: ligat-al-dev-svc
-            port:
-              number: 80
+kind: Ingress  
+metadata:  
+  name: ligat-al-dev-ingress 
+spec:  
+  rules:  
+  - host: www.ec2-3-69-9-45.eu-central-1.compute.amazonaws.com/dev
+    http:  
+      paths:  
+      - backend:  
+          serviceName: ligat-al-dev-svc  
+          servicePort: 80  
 
