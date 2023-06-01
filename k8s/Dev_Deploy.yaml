@@ -40,13 +40,14 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ligat-al-ingress
+  name: ligat-al-dev-ingress
+  namespace: dev
 spec:
   rules:
   - http:
       paths:
       - path: /dev
-        pathType: Prefix
+        pathType: Exact
         backend:
           service:
             name: ligat-al-dev-svc
