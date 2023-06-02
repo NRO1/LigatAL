@@ -40,18 +40,16 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ligat-al-ingress
+  name: ligat-al-dev-ingress
+  namespace: dev
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - http:
       paths:
-      - path: /
-        pathType: Exact
-        backend:
-          service:
-            name: ligat-al-prod-svc
-            port:
-              number: 80
       - path: /dev
         pathType: Exact
         backend:
