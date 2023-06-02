@@ -6,7 +6,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'RAK', variable: 'rak'), string(credentialsId: 'RAH', variable: 'rah')]) {
                     sh '''
                     echo "#####   BUILDING IMAGE   ###"
-                    docker build --tag nrdevac1/la:v1 --build-arg RAK=rak --build-arg RAH=rah .
+                    docker build --tag nrdevac1/la-prod:v1 --build-arg RAK=rak --build-arg RAH=rah .
                     echo "#####   DONE   ######"
                     '''
                 }
@@ -17,9 +17,9 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dh_creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh '''
-                    echo "#####   PUSHING IMAGE TO Repo   ###"
+                    echo "#####   PUSHING IMAGE TO Repo #####"
                     docker login -u $USERNAME -p $PASSWORD
-                    docker push nrdevac1/la:v1
+                    docker push nrdevac1/la-prod:v1
                     echo "#####   DONE   #####"
                     '''
                 }
@@ -32,7 +32,7 @@ pipeline {
                     file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')
                 ]) {
                     sh '''
-                    kubectl apply --kubeconfig ${KUBECONFIG} -f k8s/Dev_Deploy.yaml --namespace=dev
+                    kubectl apply --kubeconfig ${KUBECONFIG} -f k8s/Prod_Deploy.yaml --namespace=prod
                     '''
                 }
             }
