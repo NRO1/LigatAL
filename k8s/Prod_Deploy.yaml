@@ -1,27 +1,38 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ligat-al
+  name: ligat-al-prod
   namespace: prod
   labels:
-    app: ligat-al
+    app: ligat-al-prod
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: ligat-al
+      app: ligat-al-prod
   template:
     metadata:
       labels:
-        app: ligat-al
+        app: ligat-al-prod
     spec:
       containers:
-      - name: ligat-al
-        image: nrdevac1/la:v1
+      - name: ligat-al-prod
+        image: nrdevac1/la-prod:v1
         ports:
         - containerPort: 80
         resources:
           limits: 
             memory: "1000Mi"
             cpu: "500m"
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ligat-al-prod-svc
+spec:
+  selector:
+    app: ligat-al-prod
+  ports:
+  - port: 80
+    targetPort: 80
+    name: ligat-al-prod
