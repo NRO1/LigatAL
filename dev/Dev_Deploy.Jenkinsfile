@@ -43,14 +43,14 @@ pipeline {
         failure {
             echo "Deploy stage failed due to issue in the build or pushing to image repo"
             emailext body: 'Deploy stage failed due to issue in the build or pushing to image repo',
-                subject: 'Jenkins build - Dev stage FAILED :(',
+                subject: 'Jenkins build - Dev stage FAILED',
                 to: 'nrdevac1@gmail.com'
         }
 
         success {
             echo "Build and Deploy are successful!"
             emailext body: 'Build and Deploy are successful!',
-                subject: 'Jenkins build - Dev stage SUCCEEDED :)',
+                subject: 'Jenkins build - Dev stage SUCCEEDED',
                 to: 'nrdevac1@gmail.com'
         }
     }
