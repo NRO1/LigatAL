@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ligat-al
+  name: ligat-al-dev
   namespace: dev
   labels:
-    app: ligat-al
+    app: ligat-al-dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ligat-al
+      app: ligat-al-dev
   template:
     metadata:
       labels:
-        app: ligat-al
+        app: ligat-al-dev
     spec:
       containers:
-      - name: ligat-al
+      - name: ligat-al-dev
         image: nrdevac1/la:v1
         ports:
         - containerPort: 80
@@ -31,11 +31,11 @@ metadata:
   name: ligat-al-dev-svc
 spec:
   selector:
-    app: ligat-al
+    app: ligat-al-dev
   ports:
   - port: 80
     targetPort: 80
-    name: ligat-al
+    name: ligat-al-dev
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
