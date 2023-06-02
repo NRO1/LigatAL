@@ -50,8 +50,15 @@ spec:
   rules:
   - http:
       paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ligat-al-prod-svc
+            port:
+              number: 80
       - path: /dev
-        pathType: Exact
+        pathType: Prefix
         backend:
           service:
             name: ligat-al-dev-svc
