@@ -40,21 +40,12 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ligat-al-dev-ingress
+  name: ligat-al-dev
   namespace: dev
-  annotations:
-    kubernetes.io/ingress.class: nginx
 spec:
   rules:
   - http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: ligat-al-prod-svc
-            port:
-              number: 80
       - path: /dev
         pathType: Prefix
         backend:
