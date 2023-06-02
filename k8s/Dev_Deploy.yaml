@@ -36,5 +36,28 @@ spec:
   - port: 80
     targetPort: 80
     name: ligat-al
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ligat-al-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Exact
+        backend:
+          service:
+            name: ligat-al-prod-svc
+            port:
+              number: 80
+      - path: /dev
+        pathType: Exact
+        backend:
+          service:
+            name: ligat-al-dev-svc
+            port:
+              number: 80
 
 
