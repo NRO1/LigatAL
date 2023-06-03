@@ -41,7 +41,7 @@ pipeline {
         stage('E2E tests') {
                   steps {
                     sh '''
-                        npx cypress open
+                        npx cypress run
                     '''
                   }
                }

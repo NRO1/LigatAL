@@ -8,6 +8,6 @@ describe('Ligat-al web testing', () => {
 
   it('should have title', () => {
     cy.wait(200)
-    cy.get('[data-cy="main_title"').contains("ליגת העל")
+    cy.get('#main_title').contains("ליגת העל")
   })
 })
