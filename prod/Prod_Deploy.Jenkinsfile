@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Build image') {
+        stage('Build') {
             steps {
                 withCredentials([string(credentialsId: 'RAK', variable: 'rak'), string(credentialsId: 'RAH', variable: 'rah')]) {
                     sh '''
