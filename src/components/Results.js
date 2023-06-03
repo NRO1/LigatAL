@@ -26,6 +26,9 @@ function Results(props) {
     headers: {
       "X-RapidAPI-Key": process.env.REACT_APP_KEY,
       "X-RapidAPI-Host": process.env.REACT_APP_HOST,
+      "connection": "keep-alive",
+      "Accept": "*/*",
+      "Accept-Encoding": "gzip, deflate, br",
     },
   };
 
