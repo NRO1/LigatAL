@@ -41,7 +41,7 @@ pipeline {
         stage('E2E tests') {
                   steps {
                     sh '''
-                        npx cypress run --spec "cypress/e2e/ligat-al.cy.js" --config video=false
+                        npx cypress run
                     '''
                   }
                }

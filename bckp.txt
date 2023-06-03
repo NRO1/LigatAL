@@ -15,3 +15,5 @@ spec:
             name: ligat-al-dev-svc
             port:
               number: 80
+
+const { defineConfig } = require("cypress");
