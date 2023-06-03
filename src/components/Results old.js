@@ -1,3 +1,4 @@
+import axios from "axios";
 import classes from "./Results.module.css";
 import { useState } from "react";
 import Spinner from "../Util/spinner";
@@ -18,13 +19,15 @@ function Results(props) {
 
   let teamId = props.tid;
 
-  const url = `https://api-football-v1.p.rapidapi.com/v3/teams/statistics?league=383&season=2022&team=${teamId}`;
   const options = {
     method: "GET",
+    url: "https://api-football-v1.p.rapidapi.com/v3/teams/statistics",
+    params: { league: "383", season: "2022", team: `${teamId}` },
     headers: {
       "X-RapidAPI-Key": process.env.REACT_APP_KEY,
-      "X-RapidAPI-Host": process.env.REACT_APP_HOST
-    }
+      "X-RapidAPI-Host": process.env.REACT_APP_HOST,
+      "Content-Type": "application/x-www-form-urlencoded" 
+    },
   };
 
   let streak_arr = [];
@@ -33,7 +36,8 @@ function Results(props) {
   let cards_arr = [];
   let lineup_data = [];
 
-  function getData() {
+
+  async function getData() {
     setIsLoading(true);
 
     if (teamId === 0) {
@@ -43,26 +47,26 @@ function Results(props) {
       return
     }
     
-    fetch(url, options)
-      .then((response) => response.json())
+    await axios
+      .request(options)
       .then(function (response) {
-        let streak = { ...response.response.form };
+        let streak = { ...response.data.response.form };
         streak_arr = Object.values(streak);
         setStreakArray(streak_arr);
 
-        let played = { ...response.response.fixtures };
+        let played = { ...response.data.response.fixtures };
         played_arr = Object.values(played);
         setPlayedArray(played_arr);
 
-        let goals = { ...response.response.goals };
+        let goals = { ...response.data.response.goals };
         goals_arr = Object.values(goals);
         setGoalsArray(goals_arr);
 
-        let cards = { ...response.response.cards };
+        let cards = { ...response.data.response.cards };
         cards_arr = Object.values(cards);
         setCardsArray(cards_arr);
 
-        let lineups = { ...response.response.lineups };
+        let lineups = { ...response.data.response.lineups };
         for (const v of Object.values(lineups)) {
           let formation_obj = {
             name: v.formation,
