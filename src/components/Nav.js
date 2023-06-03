@@ -63,7 +63,7 @@ function Nav() {
 
   return (
     <div>
-      <div className={classes.g_container}>
+      <div className={classes.g_container} data-cy="list">
         {team_list.map((t) => (
           <img
             key={t.id}
