@@ -28,7 +28,8 @@ function Results(props) {
       "X-RapidAPI-Host": process.env.REACT_APP_HOST,
       "connection": "keep-alive",
       "Accept": "*/*",
-      "Accept-Encoding": "gzip, deflate, br"
+      "Accept-Encoding": "gzip, deflate, br",
+      "Access-Control-Allow-Origin": "*",
     },
   };
 
