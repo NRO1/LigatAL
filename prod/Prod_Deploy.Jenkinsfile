@@ -42,8 +42,7 @@ pipeline {
                   steps {
                     sh '''
                         npx cypress install
-                        npx cypress cache path
-                        npx cypress cache list
+                        npx cypress verify
                         npx cypress run
                     '''
                   }
