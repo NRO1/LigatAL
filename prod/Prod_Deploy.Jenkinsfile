@@ -40,7 +40,11 @@ pipeline {
 
         stage('E2E tests') {
                   steps {
-                    sh 'npx cypress run'
+                    sh '''
+                        npx cypress cache path
+                        npx cypress cache list
+                        npx cypress run
+                    '''
                   }
                }
     } 
